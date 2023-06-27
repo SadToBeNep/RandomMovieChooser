@@ -1,0 +1,212 @@
+﻿@page "/moviegenerator"
+@using RandomMovieChooser.Client.Models;
+@using RandomMovieChooser.Shared;
+ @using RandomMovieChooser.Shared.Models;
+
+
+
+
+
+<h3>MovieGenerator</h3>
+<button class="btn btn-primary" @onclick="getMovie">Get random movie</button>
+<div class="genre-buttons">
+    @if (isClickedController.ActionIsClicked) {<button class="genre-button" @onclick=isClickedController.actionClick>Action</button> }else{ <button class="genre-button-unclicked" @onclick=isClickedController.actionClick>Action</button>}
+    @if (isClickedController.AdventureIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.adventureClick>Adventure</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.adventureClick>Adventure</button>
+    }
+    @if (isClickedController.AnimationIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.animationClick>Animation</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.animationClick>Animation</button>
+    }
+    @if (isClickedController.ComedyIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.comedyClick>Comedy</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.comedyClick>Comedy</button>
+    }
+    @if (isClickedController.CrimeIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.crimeClick>Crime</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.crimeClick>Crime</button>
+    }
+    @if (isClickedController.DocumentaryIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.documentaryClick>Documentary</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.documentaryClick>Documentary</button>
+    }
+    @if (isClickedController.DramaIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.dramaClick>Drama</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.dramaClick>Drama</button>
+    }
+    @if (isClickedController.FamilyIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.familyClick>Family</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.familyClick>Family</button>
+    }
+    @if (isClickedController.FantasyIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.fantasyClick>Fantasy</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.fantasyClick>Fantasy</button>
+    }
+    @if (isClickedController.HistoryIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.historyClick>History</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.historyClick>History</button>
+    }
+    @if (isClickedController.HorrorIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.horrorClick>Horror</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.horrorClick>Horror</button>
+    }
+    @if (isClickedController.MusicIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.musicClick>Music</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.musicClick>Music</button>
+    }
+    @if (isClickedController.MysteryIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.mysteryClick>Mystery</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.mysteryClick>Mystery</button>
+    }
+    @if (isClickedController.RomanceIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.romanceClick>Romance</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.romanceClick>Romance</button>
+    }
+    @if (isClickedController.ScifiIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.scifiClick>SCI-FI</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.scifiClick>SCI-FI</button>
+    }
+    @if (isClickedController.TvMovieIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.tvMovieClick>TV-Movie</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.tvMovieClick>TV-Movie</button>
+    }
+    @if (isClickedController.ThrillerIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.thrillerClick>Thriller</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.thrillerClick>Thriller</button>
+    }
+    @if (isClickedController.WarIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.warClick>War</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.warClick>War</button>
+    }
+    @if (isClickedController.WesternIsClicked)
+    {
+        <button class="genre-button" @onclick=isClickedController.westernClick>Western</button>
+    }
+    else
+    {
+        <button class="genre-button-unclicked" @onclick=isClickedController.westernClick>Western</button>
+    }
+</div>
+@if (movies.Count != 0)
+{
+    <div class="container-wrapper">
+    @foreach (MovieDetails movie in movies)
+    {
+        
+            <div class="container">
+                <img class="cover-image" src="@movie.pictureURL" alt="Movie Cover">
+                <div class="movie-info">
+                    <h1>@movie.Title</h1>
+                    <p class="release-date">Release Date: @movie.ReleaseDate</p>
+                    <p class="genres">@genreFormat(movie)</p>
+                    <p class="description">@movie.Description</p>
+                </div>
+            </div>
+
+        
+    }
+     </div>
+
+}
+
+
+
+@code {
+    private List<MovieDetails> movies = new List<MovieDetails>();
+    private string formattedGenres = "";
+
+    public async void getMovie()
+    {
+        string rootUrl = "https://localhost:7275/api/Movie";
+        movies.Clear();
+        HttpClient http = new HttpClient();
+        for (int x = 0; x <= 5; x++)
+        {
+            formattedGenres = "Genres: ";
+            MovieDetails newRandomMovie = await http.GetFromJsonAsync<MovieDetails>("https://localhost:7275/api/Movie");
+            newRandomMovie.pictureURL = "https://image.tmdb.org/t/p/original" + newRandomMovie.pictureURL;
+            newRandomMovie.display();
+            movies.Add(newRandomMovie);
+        }
+        StateHasChanged();
+        Console.WriteLine("Updated movie database!");
+    }
+    public string genreFormat(MovieDetails mv)
+    {
+        string temp = "Genres: ";
+        foreach(string x in mv.translatedGenres)
+        {
+            temp += x + ",";
+        }
+        return temp;
+    }
+}
