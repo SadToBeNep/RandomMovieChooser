@@ -2,6 +2,7 @@
 @using RandomMovieChooser.Client.Models;
 @using RandomMovieChooser.Shared;
  @using RandomMovieChooser.Shared.Models;
+@using System.Diagnostics;
 
 
 
@@ -186,13 +187,25 @@
 
     public async void getMovie()
     {
-        string rootUrl = "https://localhost:7275/api/Movie";
+        var APIq = isClickedController.createAPIQuery();
+        string requestURL;
+        if(APIq.Length > 1)
+        {
+            requestURL = "https://localhost:7275/api/Movie/getMovieByCategory?includeMovies="+APIq;
+            Debug.WriteLine(requestURL);
+        }
+        else
+        {
+            requestURL = "https://localhost:7275/api/Movie";
+        }
+
         movies.Clear();
         HttpClient http = new HttpClient();
+        Console.WriteLine(requestURL);
         for (int x = 0; x <= 5; x++)
         {
             formattedGenres = "Genres: ";
-            MovieDetails newRandomMovie = await http.GetFromJsonAsync<MovieDetails>("https://localhost:7275/api/Movie");
+            MovieDetails newRandomMovie = await http.GetFromJsonAsync<MovieDetails>(requestURL);
             newRandomMovie.pictureURL = "https://image.tmdb.org/t/p/original" + newRandomMovie.pictureURL;
             newRandomMovie.display();
             movies.Add(newRandomMovie);
