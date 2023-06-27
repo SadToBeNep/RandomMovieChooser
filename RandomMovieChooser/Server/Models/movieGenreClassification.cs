@@ -3,9 +3,9 @@ using System.Diagnostics;
 
 namespace RandomMovieChooser.Server.Models
 {
-    public  class movieGenreClassification
+    public static class movieGenreClassification
     {
-        public IDictionary<string, List<int>> movieGenres = new Dictionary<string, List<int>>
+        public static IDictionary<string, List<int>> movieGenres = new Dictionary<string, List<int>>
         {
             { "Action", new List<int>{ } },
             { "Adventure", new List<int>{ } },
@@ -27,7 +27,7 @@ namespace RandomMovieChooser.Server.Models
             { "War", new List<int>{ } },
             { "Western", new List<int>{ } },
         };
-        public void clasificationOfMovies(List<MovieDetails> movies)
+        public static void clasificationOfMovies(List<MovieDetails> movies)
         {
             int counter = 0;
             translateGenreIDs translator = new translateGenreIDs();

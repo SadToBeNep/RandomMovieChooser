@@ -61,8 +61,7 @@ namespace RandomMovieChooser.Server.Services
         public void classification(List <MovieDetails> movies)
         {
             Debug.WriteLine("Clasification 3");
-            var x = new movieGenreClassification();
-            x.clasificationOfMovies(movies);
+            movieGenreClassification.clasificationOfMovies(movies);
             Debug.WriteLine("Clasification 4");
         }
     }

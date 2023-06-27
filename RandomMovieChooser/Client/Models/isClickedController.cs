@@ -1,8 +1,9 @@
-﻿namespace RandomMovieChooser.Client.Models
+﻿using System.Text;
+
+namespace RandomMovieChooser.Client.Models
 {
     static class isClickedController
     {
-        public static bool isAnythingClicked = false;
         public static bool ActionIsClicked = false;
         public static bool AnimationIsClicked = false;
         public static bool AdventureIsClicked = false;
@@ -99,5 +100,94 @@
         {
             isClickedController.WesternIsClicked = !(isClickedController.WesternIsClicked);
         }
+    
+    public static string createAPIQuery()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (AnimationIsClicked)
+            {
+                sb.Append("Animation,");
+            }
+            if (ActionIsClicked)
+            {
+                sb.Append("Action,");
+            }
+            if (AdventureIsClicked)
+            {
+                sb.Append("Adventure,");
+            }
+            if (ComedyIsClicked)
+            {
+                sb.Append("Comedy,");
+            }
+            if (CrimeIsClicked)
+            {
+                sb.Append("Crime,");
+            }
+            if (DocumentaryIsClicked)
+            {
+                sb.Append("Documentary,");
+            }
+            if (DramaIsClicked)
+            {
+                sb.Append("Drama,");
+            }
+            if (FamilyIsClicked)
+            {
+                sb.Append("Family,");
+            }
+            if (FantasyIsClicked)
+            {
+                sb.Append("Fantasy,");
+            }
+            if (HistoryIsClicked)
+            {
+                sb.Append("History,");
+            }
+            if (HorrorIsClicked)
+            {
+                sb.Append("Horro,");
+            }
+            if (MusicIsClicked)
+            {
+                sb.Append("Music,");
+            }
+            if (MysteryIsClicked)
+            {
+                sb.Append("Mystery,");
+            }
+            if (RomanceIsClicked)
+            {
+                sb.Append("Romance,");
+            }
+            if (ScifiIsClicked)
+            {
+                sb.Append("Science Fiction,");
+            }
+            if (TvMovieIsClicked)
+            {
+                sb.Append("TV Movie,");
+            }
+            if (ThrillerIsClicked)
+            {
+                sb.Append("Thriller,");
+            }
+            if (WarIsClicked)
+            {
+                sb.Append("War,");
+            }
+            if (WesternIsClicked)
+            {
+                sb.Append("Western,");
+            }
+            string query = sb.ToString();
+            return query;
+
+        }
+    
+    
     }
+
+
+
 }
